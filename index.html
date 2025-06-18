@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классика формы - Спортивный клуб</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff5e00;
+        }
+        
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff5e00;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e05500;
+            transform: translateY(-3px);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            z-index: 1000;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ff5e00;
+        }
+        
+        section {
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+        
+        .about {
+            background: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .services {
+            text-align: center;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 3rem;
+            color: #ff5e00;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .trainers {
+            background: #f9f9f9;
+        }
+        
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .trainer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .trainer-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .trainer-info {
+            padding: 20px;
+        }
+        
+        .trainer-info h3 {
+            margin-bottom: 5px;
+        }
+        
+        .trainer-info p {
+            color: #ff5e00;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .pricing {
+            text-align: center;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .price-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popular {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ff5e00;
+            color: white;
+            padding: 5px 20px;
+            font-size: 0.8rem;
+            border-bottom-left-radius: 10px;
+        }
+        
+        .price-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            color: #ff5e00;
+            margin-bottom: 20px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #777;
+        }
+        
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .price-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .contact {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-card i {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff5e00;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input,
+
+.form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        ::placeholder {
+            color: #ddd;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ff5e00;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#trainers">Тренеры</a></li>
+            <li><a href="#pricing">Цены</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+    
+    <header id="home">
+        <div class="header-content">
+            <div class="logo">Классика формы</div>
+            <h1>Преобрази свое тело</h1>
+            <p>Присоединяйтесь к лучшему спортивному клубу города с современным оборудованием, профессиональными тренерами и дружеской атмосферой.</p>
+            <a href="#pricing" class="btn">Начать тренироваться</a>
+        </div>
+    </header>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О нашем клубе</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Классика формы - это не просто тренажерный зал, это сообщество единомышленников, стремящихся к здоровому образу жизни и физическому совершенству.</p>
+                    <p>Основанный в 2010 году, наш клуб вырос из небольшой студии в ведущий фитнес-центр города с площадью более 2000 кв.м.</p>
+                    <p>Мы предлагаем:</p>
+                    <ul>
+                        <li>Современное оборудование от ведущих мировых производителей</li>
+                        <li>Индивидуальный подход к каждому клиенту</li>
+                        <li>Профессиональных тренеров с многолетним опытом</li>
+                        <li>Разнообразные групповые программы</li>
+                        <li>Удобное расположение в центре города</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Тренажерный зал">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Тренажерный зал</h3>
+                    <p>Просторная зона с современными тренажерами и свободными весами для всех групп мышц.</p>
+
+</div>
+                <div class="service-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Групповые тренировки</h3>
+                    <p>Йога, пилатес, функциональный тренинг, кроссфит и другие направления под руководством опытных инструкторов.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Персональные тренировки</h3>
+                    <p>Индивидуальный подход и программа тренировок, разработанная специально для вас.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Кардиозона</h3>
+                    <p>Беговые дорожки, эллипсы, велотренажеры и другие кардиотренажеры последнего поколения.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-swimmer"></i>
+                    <h3>Бассейн</h3>
+                    <p>25-метровый бассейн с подогревом и занятиями по аквааэробике.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-spa"></i>
+                    <h3>SPA-зона</h3>
+                    <p>Сауна, хамам, массажные кабинеты для восстановления после тренировок.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="trainers" class="trainers">
+        <div class="container">
+            <h2>Наши тренеры</h2>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Тренер">
+                    <div class="trainer-info">
+                        <h3>Алексей Петров</h3>
+                        <p>Фитнес-тренер</p>
+                        <p>Специализация: силовые тренировки, коррекция фигуры</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Тренер">
+                    <div class="trainer-info">
+                        <h3>Мария Иванова</h3>
+                        <p>Инструктор групповых программ</p>
+                        <p>Специализация: йога, пилатес, стретчинг</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Тренер">
+                    <div class="trainer-info">
+                        <h3>Дмитрий Смирнов</h3>
+                        <p>Тренер по кроссфиту</p>
+                        <p>Специализация: функциональный тренинг, подготовка к соревнованиям</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <img src="https://images.unsplash.com/photo-1518457900609-53d95cc60e5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Тренер">
+                    <div class="trainer-info">
+                        <h3>Елена Козлова</h3>
+                        <p>Тренер по плаванию</p>
+                        <p>Специализация: техника плавания, аквааэробика</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Наши цены</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Разовое посещение</h3>
+                    <div class="price">800 <span>руб.</span></div>
+
+                    <ul>
+                        <li>Доступ ко всем зонам клуба</li>
+                        <li>1 посещение</li>
+                        <li>Безлимитное время</li>
+                        <li>Групповые занятия</li>
+                    </ul>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+                <div class="price-card">
+                    <div class="popular">Популярно</div>
+                    <h3>Месячный абонемент</h3>
+                    <div class="price">5000 <span>руб./мес.</span></div>
+                    <ul>
+                        <li>Неограниченное посещение</li>
+                        <li>Все зоны клуба</li>
+                        <li>Групповые занятия</li>
+                        <li>1 персональная тренировка</li>
+                    </ul>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+                <div class="price-card">
+                    <h3>Годовой абонемент</h3>
+                    <div class="price">45000 <span>руб./год</span></div>
+                    <ul>
+                        <li>Неограниченное посещение</li>
+                        <li>Все зоны клуба</li>
+                        <li>Групповые занятия</li>
+                        <li>5 персональных тренировок</li>
+                        <li>Скидка 25% на SPA</li>
+                    </ul>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Контакты</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>г. Москва, ул. Спортивная, 15</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 123-45-67</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@ironfit.ru</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 7:00 - 23:00</p>
+                    <p>Сб-Вс: 9:00 - 21:00</p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Остались вопросы?</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Ваш телефон">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Ваше сообщение" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="logo">Классика формы</div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-vk"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>&copy; 2023 Классика формы. Все права защищены.</p>
+    </footer>
+</body>
+</html>
